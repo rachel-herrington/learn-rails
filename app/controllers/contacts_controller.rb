@@ -7,9 +7,8 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(secure_params)
     if @contact.valid?
-      #TODO replace with guard clause
-      #TODO save data
-      #TODO send message
+      #TODO write guard clause as practice
+      UserMailer.contact_email(@contact).deliver
       flash[:notice] = "Message sent from #{@contact.name}."
       redirect_to root_path
     else
